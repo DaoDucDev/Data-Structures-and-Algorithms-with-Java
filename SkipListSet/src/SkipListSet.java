@@ -35,7 +35,7 @@ public class SkipListSet<E extends Comparable<E>> extends AbstractSet<E> {
     }
 
     public void print() {
-        for (int i = 0; i < numLevel; i++) {
+        for (int i = numLevel - 1; i >= 0; i--) {
             firstNode.printLevel(i);
             System.out.println("\n");
         }
@@ -59,34 +59,32 @@ public class SkipListSet<E extends Comparable<E>> extends AbstractSet<E> {
         SkipNode<E> deleteNode = search(obj);
         if (deleteNode == null) {
             return false;
+        } else {
+            deleteNode.element = null;
         }
-        deleteNode.element = null;
 
         for (int i = 0; i < numLevel; i++) {
             firstNode.refreshAfterDelete(i);
         }
 
-        System.out.println();
+        // System.out.println();
         return true;
     }
-    
-    // public boolean remove(E target){
-    // SkipNode<E> deleteNode = search(target);
-    // if(deleteNode == null){
-    // return false;
-    // }
-    // deleteNode.element = null;
-
-    // for (int i = 0; i < numLevel; i++) {
-    // firstNode.refreshAfterDelete(i);
-    // }
-
-    // return true;
-    // }
 
     @Override
+    public boolean contains(Object obj) {
+        SkipNode<E> findNode = search(obj);
+        if (findNode != null) {
+            return true;
+        }
+
+        return false;
+    }
+
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @Override
     public Iterator<E> iterator() {
-        return new LinkedIterator<E>(firstNode);
+        return new SkipListIterator(this, 0);
     }
 
     @Override
