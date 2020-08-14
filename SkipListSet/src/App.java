@@ -9,6 +9,7 @@ public class App {
 
         for (Integer integer : arr) {
             sls.add(integer);
+            //sls.numElement++;
         }
 
         System.out.println("===========SKIP LIST SET============");
@@ -26,17 +27,17 @@ public class App {
 
         System.out.println("\nREMOVE 12, 2, 0");
         System.out.println("REMOVING 12");
-        if (sls.remove(2)) {
-            sls.print();
-        }
+        sls.remove(12);
+        sls.print();
 
         System.out.println();
         System.out.println("REMOVING 2");
-        if (sls.remove(2)) {
-            sls.print();
+        if(sls.contains(2)){
+            sls.remove(2);
         }
+        sls.print();
 
-        if (sls.remove(0) == false) {
+        if (sls.contains(0) == false) {
             System.out.println("Didn't remove 0, cause not in the list");
         }
 

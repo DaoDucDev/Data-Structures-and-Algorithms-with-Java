@@ -59,7 +59,7 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
         SkipNode<E> result = null;
         SkipNode<E> current = this.getNext(level);
         
-        while (current != null && current.element.compareTo((E)obj) <= 0) {
+        while (current != null && current.element != null && current.element.compareTo((E)obj) <= 0) {
             if (current.element.equals(obj)) {
                 result = current;
                 break;
@@ -101,8 +101,7 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
 
     @Override
     public int compareTo(E o) {
-        // TODO Auto-generated method stub
-        return 0;
+        return element.compareTo(o);
     }
 
 }
