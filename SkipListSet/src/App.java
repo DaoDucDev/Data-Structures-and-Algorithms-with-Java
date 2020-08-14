@@ -16,7 +16,6 @@ public class App {
         System.out.println("Size of skip list set is " + sls.size());
 
         sls.print();
-        // System.out.println();
         System.out.println();
 
         System.out.println("ITERATE THROUGH ELEMENTS");

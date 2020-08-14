@@ -1,4 +1,3 @@
-import java.util.concurrent.TimeUnit;
 
 public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
 
@@ -40,7 +39,6 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
         } else if (skipNode.element.compareTo(current.element) == 0) {
             return;
         } else {
-
             while (current.getNext(level) != null && current.getNext(level).element.compareTo(skipNode.element) < 0) {
                 current = current.getNext(level);
             }
@@ -58,7 +56,7 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
     SkipNode<E> search(Object obj, int level) {
         SkipNode<E> result = null;
         SkipNode<E> current = this.getNext(level);
-        
+
         while (current != null && current.element != null && current.element.compareTo((E)obj) <= 0) {
             if (current.element.equals(obj)) {
                 result = current;
@@ -85,11 +83,9 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
 
     void printLevel(int level) {
         System.out.print("level_" + (level + 1) + " = [ null ");
-        int length = 0;
 
         SkipNode<E> current = this.getNext(level);
         while (current != null) {
-            length++;
             if (current.element != null) {
                 System.out.print(current.element.toString() + " ");
             }
@@ -101,7 +97,7 @@ public class SkipNode<E extends Comparable<E>> implements Comparable<E> {
 
     @Override
     public int compareTo(E o) {
-        return element.compareTo(o);
+        return 0;
     }
 
 }
